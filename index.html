@@ -1,0 +1,372 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/austin2014.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/austin2014/austin_logo.png"></span>
+    </article>
+  </slide>
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/sparkle_128.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Session roadmap</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>What we've come to expect from analytics software</li>
+        <li>Drupal for managing "web experiences"</li>
+        <li>Proposed architecture and improvements to existing components.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/sparkle_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Let's talk about analytics</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Analytics</h2>
+    </hgroup>
+    <article>
+      <h3>Analytics is the systematic analysis of data or statistics.</h3><br />
+      <ul class="build fade">
+        <li>Data analyzed includes existing application data necessary for day-to-day operations as well as purpose-collected metrics.</li>
+        <li>Analytics data is often collected and stored in <b>purpose-built databases</b> or data warehouses for later analysis</li>
+        <li>Data is queried, aggregated, and analyzed to <b>make informed decisions</b> within an organization</li>
+        <li>Analytics comes in many flavors; for our purposes, we'll focus on <b>web analytics</b> and <b>software analytics</b></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web analytics basics</h2>
+    </hgroup>
+    <article>
+      <h4>Thanks to ubiquitous tools like GA, we've come to expect...</h4><br />
+      <ul class="build fade">
+        <li><b>Automated metric collection</b> on events at the page or session level
+          <ul>
+            <li>Page view events, typically keyed off of page URL or path</li>
+            <li>Default metrics like: browser, OS, geo, etc.</li>
+          </ul>
+        </li>
+        <li><b>Aggregation</b> on records over time for those events
+          <ul>
+            <li>How many hits to this page in the last month?</li>
+            <li>How many unique visitors?</li>
+          </ul>
+        </li>
+        <li><b>Segmentation</b> and filtering on collected metrics
+          <ul>
+            <li>How many hits from Tokyo?</li>
+            <li>How many IE visitors to this page from China yesterday?</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web analytics extensibility</h2>
+    </hgroup>
+    <article>
+      <h4>Built on those basics, we've come to find the following indispensable:</h4><br />
+      <ul class="build fade">
+        <li><b>Ad hoc events</b>, decorated with the usual metrics
+          <ul>
+            <li>User clicked [this element]</li>
+            <li>User focused on [this field] with [this value]</li>
+          </ul>
+        </li>
+        <li>Ad hoc definition of <b>custom metrics and dimensions</b>
+          <ul>
+            <li>This page is a taxonomy term with [this tid]</li>
+            <li>This visitor is associated with [this industry]</li>
+          </ul>
+        </li>
+        <li><b>Native integration</b> of the above with the aforementioned basics
+          <ul>
+            <li>How many people in [this industry] clicked [this element] last week?</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Deriving value & meaningful insights</h2>
+    </hgroup>
+    <article>
+      <h4>We can also translate this into value at an organizational level:</h4><br />
+      <ul class="build fade">
+        <li><b>Goals</b> define relationships between multiple analytic events
+          <ul>
+            <li>User visited [this page]</li>
+            <li>Then, user clicked [this button]</li>
+          </ul>
+        </li>
+        <li><b>Conversions</b> happen when visitors complete defined goals
+          <ul>
+            <li>Conversions typically represent core organizational value</li>
+            <li>Typically the #1 area where optimization occurs</li>
+          </ul>
+        </li>
+        <li><b>Conversion analysis</b> is also natively integrated
+          <ul>
+            <li>What's the success rate of [becoming an engaged constituent]?</li>
+            <li>Segment conversion rate on custom dimensions over time</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Focus on developer experience</h2>
+    </hgroup>
+    <article>
+      <p>Though often difficult to conceptualize and define goals, metrics, and events across an organization's full digital presence, developer implementation can be trivial.</p>
+      <ul class="build">
+        <li><b>Performance</b> is front-and-center
+          <ul>
+            <li>The analytics package is loaded asynchronously</li>
+            <li>Prior to its availability, event and metric calls are queued</li>
+          </ul>
+        </li>
+        <li>All functionality is available via a <b>simple facade</b><br /><br />
+          <pre class="prettify" data-lang="javascript">ga('send', 'event', 'category', 'action');
+ga('set', 'dimension20', 'foo');</pre>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Software analytics</h2>
+    </hgroup>
+    <article>
+      <h4>Same concept, different data.</h4><br />
+      <ul class="build fade">
+        <li>Instead of pageview and click events, we have transaction, network connectivity, and other app-centric events</li>
+        <li>Rather than aggregating hits or visitors, we typically aggregate performance and scalability metrics</li>
+        <li>Rather than conversion tracking, we focus on performance benchmarks and optimization</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Does Drupal do analytics?</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li>Well, so the Statistics module can <b>count hits to nodes</b>, right?</li>
+        <li>And, y'know, performance and other request details are tracked in the <b>accesslog</b></li>
+        <li>I guess there's some interesting stuff in the <b>watchdog</b></li>
+        <li>But no... <b>Drupal does not do analytics the way we want</b></li>
+        <li>Instead, we rely on Drupal doing what it does best: <b>integrating with specialized third-party services</b></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/fork-in-the-road.jpg)">
+    <hgroup>
+      <h2 class="black">So what now?</h2>
+    </hgroup>
+    <footer class="source white"><a href="https://flic.kr/p/6hEGTV">src</a></footer>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/sparkle_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Let's talk web experience management</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>At DrupalCon Portland</h2>
+    </hgroup>
+    <article>
+      <h4>Dries laid out the state of Drupal as something like the following:</h4><br />
+      <p>We are competing with the likes of Adobe Experience Manager and Oracle WebCenter, not Wordpress or Joomla.</p>
+      <p>Our solid CMS foundation, combined with strengths (like flexibility and ease of integration) provide us a unique opportunity to move large organizations stuck on cumbersome enterprise digital experience management stacks to a more agile framework like Drupal.</p>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Web experience management</h2>
+    </hgroup>
+    <article>
+      <p>WEM is kind of a fluffy marketing term that basically means "a content management system, <b>but with personalization</b>."</p>
+      <ul class="build fade">
+        <li><b>Personas</b>: users are here for different reasons with different goals</li>
+        <li>Content <b>delivery should be optimized</b> for those personas and their respective goals</li>
+        <li>Most importantly, optimization should be <b>tested, measured, and improved</b> constantly</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>WEM implementation fundamentals</h2>
+    </hgroup>
+    <article>
+      <h4>A minimal framework for personalized content delivery would need:</h4><br />
+      <ul class="build fade">
+        <li>Some mechanism to customize the way content is delivered</li>
+        <li>Some mechanism to determine a visitor's persona</li>
+        <li>Some system to collect and store personalization analytics</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Drupal as the foundation for WEM</h2>
+    </hgroup>
+    <article>
+      <h4>How does Drupal look as a basis for managing experiences?</h4><br />
+      <ul class="build fade">
+        <li><b>Content delivery customization</b>
+          <ul>
+            <li>Blocks, regions: UI, hooks; condition plugins (D8)</li>
+            <li>Context module: block placement, theme, etc.</li>
+            <li>Views plugins: contextual filters, query alters, etc.</li>
+            <li>Panels</li>
+          </ul>
+        </li>
+        <li><b>Visitor segmentation</b>
+          <ul>
+            <li>Taxonomy module</li>
+            <li>Decent work in contrib: browscap, IP Geolocation</li>
+            <li>Some integration with third party real-time ID technologies</li>
+            <li>Field-able user entities</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Analytics: the elephant in the Drupal room</h2>
+    </hgroup>
+    <article>
+      <h4><b>The key to WEM is data and Drupal is completely ignorant of it.</b></h4><br />
+      <ul class="build">
+        <li>Without ongoing knowledge of a user's actions, Drupal is fundamentally handicapped in personifying a visitor.</li>
+        <li>Inaccurate visitor segmentation is difficult or otherwise yields low quality personalization</li>
+        <li>Most importantly, without personalization metrics, administrators are fundamentally handicapped in improving visitor experience</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>The fact of the matter</h2>
+    </hgroup>
+    <article>
+      <h4>If we want to do WEM, our application architecture must be <b>data-first</b>.</h4><br />
+      <ul class="build">
+        <li>Analytic data collection and storage should be <b>core to Drupal</b></li>
+        <li>Data collection and storage should be <b>pluggable</b></li>
+        <li>Analytics should be a task <b>targeted at site administrators</b>, not developers</li>
+        <li>As with the ubiquity of RWD, modules that aren't <b>data-minded</b> should be thought of as "broken"</li>
+        <li>Analytics data should be <b>fully integrated</b> with all other Drupal systems</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/sparkle_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>So how do we get there?</h2>
+    </hgroup>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/sparkle_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>Thanks!</h2>
+      <p>Important contact information goes here.</p>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="logoslide nobackground">
+    <article class="flexbox vcenter">
+      <span><img src="images/austin2014/austin_logo.png"></span>
+    </article>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-13028513-2']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
