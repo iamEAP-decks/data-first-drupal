@@ -177,7 +177,7 @@ URL: https://code.google.com/p/io-2012-slides
           </ul>
         </li>
         <li>All functionality is available via a <b>simple facade</b><br /><br />
-          <pre class="prettify" data-lang="javascript">ga('send', 'event', 'category', 'action');
+          <pre class="prettyprint" data-lang="javascript">ga('send', 'event', 'category', 'action');
 ga('set', 'dimension20', 'foo');</pre>
         </li>
       </ul>
@@ -329,6 +329,124 @@ ga('set', 'dimension20', 'foo');</pre>
     <hgroup class="auto-fadein">
       <h2>So how do we get there?</h2>
     </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Leveraging content entities</h2>
+    </hgroup>
+    <article>
+      <p>Imagine a <b>Stat Entity</b> where each instance is an analytic event that bundles configurable dimensions and metrics by event type.</p>
+      <ul class="build fade">
+        <li>The Entity API gives us pluggable storage for free</li>
+        <li>We also get bundle configuration UI for free</li>
+        <li>Most importantly, content entities already integrate seamlessly with existing subsystems like Views</li>
+        <li>Entity Query supports relationships and aggregation, is storage agnostic</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Plugins for metric collection</h2>
+    </hgroup>
+    <article>
+      <p>Imagine <b>Stat Data Plugins</b> provided by core and contrib modules associated with custom fields on Stat bundles.</p>
+      <pre class="prettyprint" data-lang="php">
+class UserAgent extends StatDataPluginBase implements ContainerFactoryPluginInterface {
+  // @var Symfony\Component\HttpFoundation\Request
+  protected $request;
+
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('request'));
+  }
+
+  public function __construct(Request $request) {
+    $this->request = $request;
+  }
+
+  public function execute() {
+    return $this->request->headers->get('user-agent', '');
+  }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Plugins for data management</h2>
+    </hgroup>
+    <article>
+      <p>Imagine <b>Data Manager Plugins</b> to perform regular tasks we commonly perform on similar data in Drupal today.</p>
+      <ul class="build fade">
+        <li>Data truncation (truncate by # of records, truncate by time)</li>
+        <li>Data aggregation (across configurable segments for configurable periods of time)</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Metric collection</h2>
+    </hgroup>
+    <article>
+      <h4>So we've defined an entity and a way to populate fields...</h4><br />
+      <ul class="build fade">
+        <li>How do we empower site builders to actually collect data?</li>
+        <li>Do we build a UI on top of Symfony events?</li>
+        <li>Do we pull Rules into core?</li>
+        <li>How do we handle events that are purely client-side?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Data analysis</h2>
+    </hgroup>
+    <article>
+      <h4>So we have this giant pile of data, how do we understand it?</h4><br />
+      <ul class="build fade">
+        <li>Views is a powerful way to query data, but...</li>
+        <li>Building a View is hard. We should work to make Views more intuitive for site builders</li>
+        <li>To support custom entity storage, we need to use Entity Query as Views' query service</li>
+        <li>Find a way to support View relationships between entities across storage backends</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Visualization</h2>
+    </hgroup>
+    <article>
+      <h4>Tables of numbers and text are not useful, but visualization is hard.</h4><br />
+      <ul class="build fade">
+        <li>If there were ever a time to pull in a visualization framework, this would be it</li>
+        <li>We should definitely not build our own viz framework</li>
+        <li>We should definitely define a light API so the framework we do pull in is swappable</li>
+        <li>Views integration is a no-brainer.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>tldr</h2>
+    </hgroup>
+    <article>
+      <ul class="build fade">
+        <li>Everyone needs analytics, Drupal doesn't do it right now.</li>
+        <li>If WEM is a thing we want to do, we need native analytics data</li>
+        <li>Even if not, it'd be nice to standardize analytics integrations</li>
+        <li>Much of the work that would go into a native analytics framework is already in core</li>
+        <li>The remaining problems to be solved are not completely daunting</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/fork-in-the-road.jpg)">
+    <footer class="source white"><a href="https://flic.kr/p/6hEGTV">src</a></footer>
   </slide>
 
   <slide class="thank-you-slide segue nobackground">
